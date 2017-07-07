@@ -1,0 +1,56 @@
+.row{
+	text-align: center;
+	height: 300px;
+	margin-top: 25px;
+	margin-bottom: 50px;
+	
+
+	
+}
+
+.cell{
+	/*top: 35%;
+	transform: perspective(1px) translateY(-50%);
+	*/
+	margin-top: 40%;
+	display: inline-block;
+	
+}
+
+#buttonAllignment{
+	margin-top: 68%;
+	display: inline-block;	
+}
+
+#triggerList{
+	margin-top: 40%;
+	display: inline-block;
+	overflow-x: hidden;
+	overflow-y: auto;
+	width: 100%;
+	max-height: 150px;
+	
+}
+
+@media (max-width: 767px){
+  .cell, #buttonAllignment,.row{
+    margin-top: 0px;
+    
+  }
+
+  .btn{
+    margin-top: 10px;
+  }
+
+  .row{
+    margin-bottom: 75%;
+    
+
+  }
+
+  #triggerList{
+  	margin-top: 0px;
+  	height: 70px;
+  	max-height: 70px;
+  }
+}

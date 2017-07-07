@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <title>Secur-iot</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width" name="viewport">
+</head>
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/manageTriggers.css">
+<link rel="stylesheet" type="text/css" href="/sidebar.css">
+<link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://use.fontawesome.com/6c78e66af5.js"></script>
+
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js'></script>
+
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js'></script>
+
+
+<script src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+<!--Module-->
+<script src="/app.js"></script>
+<!--Controllers-->
+<script src="/manageTriggersController.js"></script>
+
+<body ng-controller="manageTriggersController">
+
+<div class="nav-side-menu">
+    <div class="brand" id="brand"><h4 id="logoText">Manage triggers</h4><img id="logo" width="170" height="170" class="img img-responsive img-circle" src="/logo.png"></div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+            
+            
+            <li data-toggle="collapse" data-target="#cameras" class="collapsed">
+                <a><i class="fa fa-camera fa-lg"></i> Cameras</a>
+            </li>
+            <ul class="sub-menu collapsed" id="cameras">
+                <a href="myCameras"><li>My cameras</li></a>
+                <a href="addCamera"><li>Add camera</li></a>
+                <a href="photoRecord"><li>Photo record</li></a>
+
+            </ul>
+
+            <li data-toggle="collapse" data-target="#triggers" class="collapsed">
+                <a><i class="fa fa-paw fa-lg"></i> Triggers</a>
+            </li>
+            <ul class="sub-menu collapsed" id="triggers">
+                <a href="manageTriggers"><li class="active">Manage triggers</li></a>
+
+
+            </ul>
+            
+            <div id="logoutContainer">
+
+                <li id="logoutBtn">
+                    <a href="www.google.com">
+                        <i class="fa fa-user fa-lg"></i> Log out
+                    </a>
+                </li>
+                
+            </div>
+            
+         </ul>
+    </div>
+
+
+</div>
+
+<div class="container-fluid" id="main">
+
+    <div class="row" id="titulo">
+        <div class="col-lg-12"><h2>Manage Triggers</h2></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2"><h4><strong>Choose camera</strong></h4></div>
+        <div class="col-lg-9"> <select class="form-control" ng-options="camera as camera.name for camera in cameras track by camera._id" ng-model="selectedCamera"></select>
+        </div>
+
+    </div>
+
+    <div class="row">
+        
+        <div class="col-lg-9"> <select class="form-control" ng-options="trigger as trigger.name for trigger in triggers track by trigger._id" ng-model="selectedTrigger"></select>
+        </div>
+
+        <div class="col-lg-2">
+            <button id="addBtn" class="btn btn-primary" type="submit" ng-disabled="checkInputs()" ng-click="attachTrigger()">Attach trigger</button>
+
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            
+            <div class="table-responsive">          
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+   
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr ng-repeat="trigger in selectedCamera.triggers">
+                   
+                    <td>{{trigger.name}}</td>
+                    <td>{{trigger.type}}</td>
+                    <td><button ng-click="unattachTrigger($index)" class="btn btn-danger">Delete</button></td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+        </div>
+    </div>
+        
+        
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

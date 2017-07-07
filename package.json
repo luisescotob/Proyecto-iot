@@ -1,0 +1,27 @@
+{
+  "name": "servidor-iot",
+  "version": "1.0.0",
+  "description": "Servidor plataforma IoT",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NodeJS",
+    "IoT",
+    "Express"
+  ],
+  "author": "Luis Escoto",
+  "license": "ISC",
+  "dependencies": {
+    "apiai": "^4.0.2",
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "jade": "^1.11.0",
+    "jsonwebtoken": "^7.3.0",
+    "mongoose": "^4.8.4",
+    "morgan": "^1.8.1",
+    "nodemon": "^1.11.0",
+    "request": "^2.79.0"
+  }
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <title>Secur-iot</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width" name="viewport">
+</head>
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/accountSettings.css">
+<link rel="stylesheet" type="text/css" href="/sidebar.css">
+<link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://use.fontawesome.com/6c78e66af5.js"></script>
+
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js'></script>
+
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js'></script>
+
+
+<script src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+<!--Module-->
+<script src="/app.js"></script>
+<!--Controllers-->
+<script src="/accountSettingsController.js"></script>
+
+<body ng-controller="accountSettingsController">
+
+<div class="nav-side-menu">
+    <div class="brand" id="brand"><h4 id="logoText">Account settings</h4><img id="logo" width="170" height="170" class="img img-responsive img-circle" src="/logo.png"></div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+            
+            
+            <li data-toggle="collapse" data-target="#cameras" class="collapsed">
+                <a><i class="fa fa-camera fa-lg"></i> Cameras</a>
+            </li>
+            <ul class="sub-menu collapsed" id="cameras">
+                <a href="myCameras"><li>My cameras</li></a>
+
+            </ul>
+
+            <li data-toggle="collapse" data-target="#triggers" class="collapsed">
+                <a><i class="fa fa-paw fa-lg"></i> Triggers</a>
+            </li>
+            <ul class="sub-menu collapsed" id="triggers">
+
+                <a href="registerTriggers"><li>Register triggers</li></a>
+                <a href="manageTriggers"><li>Manage triggers</li></a>
+
+
+
+            </ul>
+
+            <li data-toggle="collapse" data-target="#settings" class="collapsed">
+                <a><i class="fa fa-cogs fa-lg"></i> Settings</a>
+            </li>
+            <ul class="sub-menu collapsed" id="settings">
+                <a href="accountSettings"><li class="active">Account settings</li></a>
+
+
+            </ul>
+            
+            <div id="logoutContainer">
+
+                <li id="logoutBtn" ng-click="logout()">
+                    <a>
+                        <i class="fa fa-user fa-lg"></i> Log out
+                    </a>
+                </li>
+                
+            </div>
+            
+         </ul>
+    </div>
+
+
+</div>
+
+<div class="container-fluid" id="main">
+
+    <div class="row" id="titulo">
+        <div class="col-lg-12"><h2>Account settings</h2></div>
+    </div>
+
+    <div class="row">
+        
+        <div class="col-lg-3">
+
+            <h4><strong>System status: <span ng-style="style" ng-bind="user.systemStatus"></span></strong></h4>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-2"><h5><strong>Name</strong></h5></div>
+
+        <div class="col-lg-3">
+            
+            <input disabled="true" type="text" name="name" ng-model="user.name" class="form-control" required>
+
+        </div>
+
+        <div id="column" class="col-lg-2"><h5><strong>Last Name</strong></h5></div>
+
+        <div class="col-lg-3">
+            
+            <input disabled="true" type="text" name="lastName" ng-model="user.lastName" class="form-control" required>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        
+        <div class="col-lg-2"><h5><strong>E-mail</strong></h5></div>
+        <div class="col-lg-3">
+            
+            <input class="form-control" type="email" name="email" ng-model="user.email" required>
+
+        </div>
+
+        <div class="col-lg-2">
+            <h5><strong>Facebook ID</strong></h5>
+        </div>
+
+        <div class="col-lg-4">
+            
+            <input class="form-control" type="text" name="fbid" ng-model="user.fbId" required>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-2"><h5><strong>Username</strong></h5></div>
+
+        <div class="col-lg-3">
+            
+            <input type="text" name="username" ng-model="user.username" class="form-control" required>
+
+        </div>
+
+        <div id="column" class="col-lg-2"><h5><strong>Password</strong></h5></div>
+
+        <div class="col-lg-4">
+            
+            <input type="password" name="password" ng-model="user.password" class="form-control" required>
+
+        </div>
+
+    </div>    
+
+    <div class="row"></div>
+
+    <div class="row">
+        
+        <div class="col-lg-2"></div>
+
+        <div class="col-lg-3">
+            <input ng-model="currentPassword" class="form-control" type="password" name="passwordCheck" placeholder="Current password">
+        </div>
+
+        <div class="col-lg-3">
+            <button id="addBtn" class="btn btn-primary" type="submit" ng-disabled="checkInputs()" ng-click="saveChanges()">Save changes</button>
+
+        </div>
+        
+        <div class="col-lg-2"></div>
+
+
+    </div> 
+
+        
+</div>
+
+
+</div>
+
+</body>
+
+</html>
