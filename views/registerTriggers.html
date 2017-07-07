@@ -44,8 +44,6 @@
             </li>
             <ul class="sub-menu collapsed" id="cameras">
                 <a href="myCameras"><li>My cameras</li></a>
-                <a href="addCamera"><li>Add camera</li></a>
-                <a href="photoRecord"><li>Photo record</li></a>
 
             </ul>
 
@@ -53,15 +51,27 @@
                 <a><i class="fa fa-paw fa-lg"></i> Triggers</a>
             </li>
             <ul class="sub-menu collapsed" id="triggers">
-                <a href="manageTriggers"><li class="active">Manage triggers</li></a>
+
+                <a href="registerTriggers"><li class="active">Register triggers</li></a>
+                <a href="manageTriggers"><li>Manage triggers</li></a>
+
+
+
+            </ul>
+
+            <li data-toggle="collapse" data-target="#settings" class="collapsed">
+                <a><i class="fa fa-cogs fa-lg"></i> Settings</a>
+            </li>
+            <ul class="sub-menu collapsed" id="settings">
+                <a href="accountSettings"><li>Account settings</li></a>
 
 
             </ul>
             
             <div id="logoutContainer">
 
-                <li id="logoutBtn">
-                    <a href="www.google.com">
+                <li id="logoutBtn" ng-click="logout()">
+                    <a>
                         <i class="fa fa-user fa-lg"></i> Log out
                     </a>
                 </li>
