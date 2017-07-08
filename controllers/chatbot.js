@@ -113,7 +113,7 @@ function sendCameraList(aiText,sender){
 			
 		}else{
 
-			Camera.find({"idUser":user[0]._id},function(error,cameras){
+			Camera.find({"idUser":user._id},function(error,cameras){
 
 				if (error) {
 					console.log(error);
