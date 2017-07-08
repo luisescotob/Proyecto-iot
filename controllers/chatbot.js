@@ -39,10 +39,12 @@ router.route("/")
 	        if (event.message && event.message.text) {
 
 	        	User.find({"fbId":event.sender.id},function(error,user){
+	        		console.log("user-----");
+	        		console.log(user);
 	        		if (error) {
 	        			sendText();
 	        		}else if(!user){
-	        			sendMessage("Asocia tu cuenta al bot actualizando tu Facebook ID en la página Account Settings con este dato: "
+	        			sendText("Asocia tu cuenta al bot actualizando tu Facebook ID en la página http://secur-iot.herokuapp.com/dashboard/accountSettings con este dato: "
 	        				+event.sender.id,event.sender.id);
 	        		}else{
 	        			sendMessage(event);
