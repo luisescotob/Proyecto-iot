@@ -1,15 +1,12 @@
 angular.module("app")
 
+  .controller("registroController",function($scope,$http,notificationFactory,redirectFactory,$sessionStorage,$rootScope){
 
-
-  .controller("registroController",function($scope,$http,notificationFactory,redirectFactory,$sessionStorage){
-
-  	
   	
 	$scope.user = {}
 	$scope.registerUser = function(){
 		
-		$http.post("http://localhost:8080/signup", $scope.user)
+		$http.post($rootScope.serverUrl+"/signup", $scope.user)
    			.then(function(response){
        		 	console.log(response);
        		 	notificationFactory.success(response.data.message);

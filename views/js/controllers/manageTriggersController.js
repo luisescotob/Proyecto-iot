@@ -1,13 +1,13 @@
 angular.module("app")
 
-.controller("manageTriggersController",function($http,$scope,notificationFactory,$sessionStorage,redirectFactory){
+.controller("manageTriggersController",function($http,$scope,notificationFactory,$sessionStorage,redirectFactory,$rootScope){
 
     if ($sessionStorage.token == undefined || $sessionStorage.idUser == undefined) {
         redirectFactory.login();
     }else{
     
     $scope.cameras;
-	$http.get("http://localhost:8080/api/cameras/getCamerasByIdUser/"+$sessionStorage.idUser, {
+	$http.get($rootScope.serverUrl+"/api/cameras/getCamerasByIdUser/"+$sessionStorage.idUser, {
                 headers: {'x-access-token': $sessionStorage.token}
             }).then(function(response){
                 
@@ -17,7 +17,7 @@ angular.module("app")
             })
 
 
-    $http.get("http://localhost:8080/api/triggers/getTriggersByIdUser/"+$sessionStorage.idUser, {
+    $http.get($rootScope.serverUrl+"/api/triggers/getTriggersByIdUser/"+$sessionStorage.idUser, {
                 headers: {'x-access-token': $sessionStorage.token}
             }).then(function(response){
                 
@@ -32,7 +32,7 @@ $scope.attachTrigger = function(){
     var selectedTrigger = $scope.selectedTrigger;
 
 
-        $http.put("http://localhost:8080/api/cameras/attachTrigger/"+$scope.selectedCamera._id,selectedTrigger, {
+        $http.put($rootScope.serverUrl+"/api/cameras/attachTrigger/"+$scope.selectedCamera._id,selectedTrigger, {
                 headers: {'x-access-token': $sessionStorage.token}
             }).then(function(response){
                 
@@ -70,7 +70,7 @@ $scope.unattachTrigger = function(index){
     var data = {}
     data.index = index;
     
-    $http.put("http://localhost:8080/api/cameras/unattachTrigger/"+$scope.selectedCamera._id,data, {
+    $http.put($rootScope.serverUrl+"/api/cameras/unattachTrigger/"+$scope.selectedCamera._id,data, {
                 headers: {'x-access-token': $sessionStorage.token}
             }).then(function(response){
                 

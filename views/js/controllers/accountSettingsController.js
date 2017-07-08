@@ -1,6 +1,8 @@
 angular.module("app")
 
-.controller("accountSettingsController",function($scope,$http,notificationFactory,$sessionStorage,redirectFactory){
+.controller("accountSettingsController",function($scope,$http,notificationFactory,$sessionStorage,redirectFactory,$rootScope){
+
+
 
     if ($sessionStorage.token == undefined && $sessionStorage.idUser == undefined) {
         redirectFactory.login();
@@ -13,7 +15,7 @@ angular.module("app")
     $scope.style = {}
 
 
-    $http.get("http://localhost:8080/api/users/getUserById/"+$sessionStorage.idUser, {
+    $http.get($rootScope.serverUrl+"/api/users/getUserById/"+$sessionStorage.idUser, {
                 headers: {'x-access-token': $sessionStorage.token}
             }).then(function(response){
                 
@@ -63,7 +65,7 @@ angular.module("app")
 
         if ($scope.currentPassword == lastInfo.password) {
 
-            $http.put("http://localhost:8080/api/users/updateUser/"+$sessionStorage.idUser,$scope.user, {
+            $http.put($rootScope.serverUrl+"/api/users/updateUser/"+$sessionStorage.idUser,$scope.user, {
                 headers: {'x-access-token': $sessionStorage.token}
             }).then(function(response){
 

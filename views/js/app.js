@@ -1,5 +1,10 @@
 angular.module("app",["toastr","ngStorage"])
 
+.run(function($rootScope){
+    $rootScope.serverUrl = "http://secur-iot.herokuapp.com"
+
+})
+
 .factory('notificationFactory', function (toastr) {
     return {
         success: function (text) {

@@ -1,6 +1,6 @@
 angular.module("app")
 
-.controller("registerTriggersController",function($scope,$http,notificationFactory,$sessionStorage,redirectFactory){
+.controller("registerTriggersController",function($scope,$http,notificationFactory,$sessionStorage,redirectFactory,$rootScope){
 
     if ($sessionStorage.token == undefined && $sessionStorage.idUser == undefined) {
         redirectFactory.login();
@@ -10,7 +10,7 @@ angular.module("app")
     $scope.trigger.token = $sessionStorage.token;
     $scope.trigger.idUser = $sessionStorage.idUser;
 
-    $http.get("http://localhost:8080/api/triggers/getTriggersByIdUser/"+$sessionStorage.idUser, {
+    $http.get($rootScope.serverUrl+"/api/triggers/getTriggersByIdUser/"+$sessionStorage.idUser, {
                 headers: {'x-access-token': $sessionStorage.token}
             }).then(function(response){
                 $scope.triggers = response.data;
@@ -28,7 +28,7 @@ angular.module("app")
         trig.type=$scope.trigger.type;
         trig.uuid=$scope.trigger.uuid;
 
-        $http.post("http://localhost:8080/api/triggers/addTrigger", $scope.trigger)
+        $http.post($rootScope.serverUrl+"/api/triggers/addTrigger", $scope.trigger)
             .then(function(response){
                 if (response.data.success == true) {
                     console.log(response);
@@ -72,7 +72,7 @@ $scope.deleteTrigger = function(index){
     var idTrigger = $scope.triggers[index]._id;
     console.log(idTrigger);
 
-    $http.delete("http://localhost:8080/api/triggers/deleteTrigger/"+idTrigger, {
+    $http.delete($rootScope.serverUrl+"/api/triggers/deleteTrigger/"+idTrigger, {
                 headers: {'x-access-token': $sessionStorage.token}
             }).then(function(response){
                 console.log(response);

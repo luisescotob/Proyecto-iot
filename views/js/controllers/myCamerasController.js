@@ -1,13 +1,13 @@
 angular.module("app")
 
-.controller("myCamerasController",function($scope,$http,$sessionStorage,redirectFactory,notificationFactory){
+.controller("myCamerasController",function($scope,$http,$sessionStorage,redirectFactory,notificationFactory,$rootScope){
 
     if ($sessionStorage.token == undefined && $sessionStorage.idUser == undefined) {
         redirectFactory.login();
     }else{
 
         
-	$http.get("http://localhost:8080/api/cameras/getCamerasByIdUser/"+$sessionStorage.idUser, {
+	$http.get($rootScope.serverUrl+"/api/cameras/getCamerasByIdUser/"+$sessionStorage.idUser, {
                 headers: {'x-access-token': $sessionStorage.token}
             }).then(function(response){
             	console.log(response);
@@ -41,7 +41,7 @@ $scope.activateCamera = function(index){
 $scope.deleteCamera = function(index){
 	$sessionStorage.idCamera = $scope.cameras[index]._id;
 	console.log($sessionStorage.idCamera);
-	$http.delete("http://localhost:8080/api/cameras/deleteCamera/"+$sessionStorage.idCamera, {
+	$http.delete($rootScope.serverUrl+"/api/cameras/deleteCamera/"+$sessionStorage.idCamera, {
                 headers: {'x-access-token': $sessionStorage.token}
             }).then(function(response){
             	console.log(response);
