@@ -37,7 +37,20 @@ router.route("/")
 	    req.body.entry.forEach((entry) => {
 	      entry.messaging.forEach((event) => {
 	        if (event.message && event.message.text) {
-	        	sendMessage(event);
+
+	        	User.find({"fbId":event.sender.id},function(error,user){
+	        		if (error) {
+	        			sendText();
+	        		}else if(!user){
+	        			sendMessage("Asocia tu cuenta al bot actualizando tu Facebook ID en la página Account Settings con este dato: "
+	        				+event.sender.id,event.sender.id);
+	        		}else{
+	        			sendMessage(event);
+	        		}
+
+	        	});
+
+	        	
 
 	        }else if (event.postback && event.postback.payload){
 	        	payload = event.postback.payload;
@@ -110,10 +123,12 @@ function sendCameraList(aiText,sender){
 	User.find({"fbId":sender},function(error,user){
 
 		if (error) {
-			
+			sendText("Ocurrio un error, intenta de nuevo mas tarde",sender);
+
+
 		}else{
 
-			Camera.find({"idUser":user._id},function(error,cameras){
+			Camera.find({"idUser":user[0]._id},function(error,cameras){
 
 				if (error) {
 					console.log(error);
