@@ -1,8 +1,8 @@
 angular.module("app")
 
 .controller("loginController",function($scope,$http,notificationFactory,redirectFactory,$sessionStorage){
-
-	if (($sessionStorage.token != undefined && $sessionStorage.idUser != undefined && $sessionStorage.idCamera != undefined)) {
+	
+	if ($sessionStorage.token != undefined && $sessionStorage.idUser != undefined) {
 		redirectFactory.myCameras();
 	}else{
 
