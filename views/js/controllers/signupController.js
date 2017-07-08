@@ -2,11 +2,14 @@ angular.module("app")
 
 
 
-  .controller("registroController",function($scope,$http,notificationFactory,redirectFactory){
+  .controller("registroController",function($scope,$http,notificationFactory,redirectFactory,$sessionStorage){
+
+  	
+  	
 	$scope.user = {}
 	$scope.registerUser = function(){
 		
-		$http.post("http://secur-iot.herokuapp.com/signup", $scope.user)
+		$http.post("http://localhost:8080/signup", $scope.user)
    			.then(function(response){
        		 	console.log(response);
        		 	notificationFactory.success(response.data.message);
@@ -33,6 +36,8 @@ angular.module("app")
 		}
 	}
 	
+
+    
 	
 })
 

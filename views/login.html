@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/login.css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
 
 	
@@ -21,7 +21,7 @@
 				<input ng-model="user.username" type="text" class="form-control" id="usuario" placeholder="Username" required ><br>
 				<input ng-model="user.password" type="password" class="form-control" id="password" placeholder="Password" required><br>	
 				<button ng-click="login()" ng-disabled="checkInputs()" id="botonLogin" class="btn btn-primary" type="submit">Log in</button><br>
-				<a id="botonLink" href="signup" class="btn btn-link" role="button">Dont have an account?</a><br>
+				<a id="botonLink" href="/signup" class="btn btn-link" role="button">Dont have an account?</a><br>
 
 			</form>
 		
@@ -41,7 +41,7 @@
   	<script src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
   	<script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
   	<!--Module-->
-  	<script src="/app.js"></script>
+  	<script src="js/app.js"></script>
   	<!--Controllers-->
-  	<script src="/loginController.js"></script>
+  	<script src="js/controllers/loginController.js"></script>
 </html>

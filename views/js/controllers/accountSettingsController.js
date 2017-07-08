@@ -2,6 +2,13 @@ angular.module("app")
 
 .controller("accountSettingsController",function($scope,$http,notificationFactory,$sessionStorage,redirectFactory){
 
+    if ($sessionStorage.token == undefined && $sessionStorage.idUser == undefined) {
+        redirectFactory.login();
+    }else{
+
+
+    
+
     var lastInfo = {}
     $scope.style = {}
 
@@ -87,7 +94,7 @@ angular.module("app")
 
 
 
-
+    }
 
 
 })

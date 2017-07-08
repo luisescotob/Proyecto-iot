@@ -25,7 +25,7 @@ angular.module("app",["toastr","ngStorage"])
     return{
         
         login: function(timeout){
-            setTimeout(function() {$window.location.href ="login"}, timeout);
+            setTimeout(function() {$window.location.assign($window.location.pathname="/login")}, timeout);
             
         },
 
@@ -36,7 +36,7 @@ angular.module("app",["toastr","ngStorage"])
 
         myCameras: function(timeout){
            
-             setTimeout(function(){$window.location.replace($window.location.pathname="/dashboard/myCameras")},timeout);
+             setTimeout(function(){$window.location.assign($window.location.pathname="/dashboard/myCameras")},timeout);
             //setTimeout(function() {$window.location.href ="dashboard/myCameras/?token="+$rootScope.token}, timeout);
             
             
@@ -68,10 +68,9 @@ angular.module("app",["toastr","ngStorage"])
 
         logout: function(timeout){
 
-            $sessionStorage.idCamera = "";
-            $sessionStorage.token ="";
-            $sessionStorage.idUser ="";
-            setTimeout(function() {$window.location.replace($window.location.pathname="/login")},timeout);
+            $sessionStorage.$reset();
+
+            setTimeout(function() {$window.location.assign($window.location.pathname="/login")},timeout);
         }
     }
 })

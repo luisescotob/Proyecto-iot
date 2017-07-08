@@ -1,6 +1,11 @@
 angular.module("app")
 
-.controller("manageTriggersController",function($http,$scope,notificationFactory,$sessionStorage){
+.controller("manageTriggersController",function($http,$scope,notificationFactory,$sessionStorage,redirectFactory){
+
+    if ($sessionStorage.token == undefined || $sessionStorage.idUser == undefined) {
+        redirectFactory.login();
+    }else{
+    
     $scope.cameras;
 	$http.get("http://localhost:8080/api/cameras/getCamerasByIdUser/"+$sessionStorage.idUser, {
                 headers: {'x-access-token': $sessionStorage.token}
@@ -103,7 +108,13 @@ $scope.checkInputs = function(){
 
 
 
+$scope.logout = function(){
+        redirectFactory.logout(500);
+    }
 
+
+
+    }
 
 
 })

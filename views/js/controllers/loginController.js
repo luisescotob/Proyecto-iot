@@ -1,10 +1,15 @@
 angular.module("app")
 
 .controller("loginController",function($scope,$http,notificationFactory,redirectFactory,$sessionStorage){
+
+	if (($sessionStorage.token != undefined && $sessionStorage.idUser != undefined && $sessionStorage.idCamera != undefined)) {
+		redirectFactory.myCameras();
+	}else{
+
 	$scope.user = {}
 	$scope.login = function(){
 
-		$http.post("http://secur-iot.herokuapp.com/login", $scope.user)
+		$http.post("http://localhost:8080/login", $scope.user)
    			.then(function(response){
        		 	console.log(response);
        		 	if (response.data.success == true) {
@@ -39,7 +44,7 @@ angular.module("app")
 		}
 	}
 
-
+	}
 
 })
 

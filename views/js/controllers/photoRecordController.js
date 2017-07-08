@@ -1,6 +1,11 @@
 angular.module("app")
 
-.controller("photoRecordController",function($scope,$http,$sessionStorage){
+.controller("photoRecordController",function($scope,$http,$sessionStorage,redirectFactory){
+
+	if ($sessionStorage.token == undefined && $sessionStorage.idUser == undefined) {
+        redirectFactory.login();
+    }else{
+
 	$http.get("http://localhost:8080/api/photos/getPhotosByIdCamera/"+$sessionStorage.idCamera, {
                 headers: {'x-access-token': $sessionStorage.token}
             }).then(function(response){
@@ -18,5 +23,12 @@ $scope.formatDate = function(captured){
 	return date+"";
 }
 
+$scope.logout = function(){
+        redirectFactory.logout(500);
+    }
+
+
+
+    }
 
 })

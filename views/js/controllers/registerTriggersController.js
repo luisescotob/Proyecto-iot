@@ -1,6 +1,11 @@
 angular.module("app")
 
-.controller("registerTriggersController",function($scope,$http,notificationFactory,$sessionStorage){
+.controller("registerTriggersController",function($scope,$http,notificationFactory,$sessionStorage,redirectFactory){
+
+    if ($sessionStorage.token == undefined && $sessionStorage.idUser == undefined) {
+        redirectFactory.login();
+    }else{
+    
     $scope.trigger = {}
     $scope.trigger.token = $sessionStorage.token;
     $scope.trigger.idUser = $sessionStorage.idUser;
@@ -86,6 +91,12 @@ $scope.deleteTrigger = function(index){
 }
 
 
+    $scope.logout = function(){
+        redirectFactory.logout(500);
+    }
 
+
+
+    }
 
 })
