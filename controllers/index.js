@@ -187,8 +187,19 @@ router.post("/notify",function(req,res){
 
 		}).then(function(camera){
 
-			sendText("Activaste desde la plataforma la cámara "+camera.name,camera.idUser);
-			//LÓGICA DE NOTIFICACIONES PUSH
+			User.findOne({_id:camera.idUser},function(error,user){
+				if (error) {
+					res.end();
+				}else if(!user){
+					res.end();
+				}
+			}).then(function(user){
+
+				sendText("Activaste desde la plataforma la cámara "+camera.name,user.fbId);
+				//AQUÍ VA LA LÓGICA DE NOTIFICACIONES PUSH
+
+			});
+			
 
 		});
 
