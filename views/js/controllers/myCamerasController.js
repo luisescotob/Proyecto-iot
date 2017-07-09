@@ -38,13 +38,12 @@ $scope.activateCamera = function(index){
     var camera = {}
     camera.idCamera = $scope.cameras[index]._id;
 
-    $http.post($rootScope.serverUrl+"/notify",camera {
-                headers: {'x-access-token': $sessionStorage.token}
-            }).then(function(response){
+    $http.post($rootScope.serverUrl+"/notify", camera)
+            .then(function(response){
+                
                 notificationFactory.info("Activaste la cámara");
-                 
-
-            })
+                
+            });
 
 
 }
