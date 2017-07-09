@@ -187,6 +187,7 @@ router.post("/notify",function(req,res){
 
 		}).then(function(camera){
 
+			sendText("Activaste desde la plataforma la cámara "+camera.name,camera.idUser);
 			//LÓGICA DE NOTIFICACIONES PUSH
 
 		});

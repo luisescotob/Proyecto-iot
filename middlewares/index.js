@@ -10,7 +10,7 @@ router.use(require("./permissions"));
 router.use(require("./sendView"));
 
 //solicita token de acceso a las ruta con prefijo /api/
-//router.use("/api",require("./authentication"));
+router.use("/api",require("./authentication"));
 //solicita token de acceso a las rutas con prefijo /dashboard/
 //router.use("/dashboard",require("./authentication"));
 
