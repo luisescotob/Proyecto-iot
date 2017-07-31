@@ -262,10 +262,9 @@ function sendRequest(messageData,sender){
 }
 
 
-	
 
-
-	
 
 
 module.exports = router;
+module.exports.sendText = sendText;
+

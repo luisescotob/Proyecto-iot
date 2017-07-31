@@ -4,6 +4,7 @@ var jwt = require("jsonwebtoken");
 var User = require("../models/users").User;
 var Camera = require("../models/cameras").Camera;
 var Trigger = require("../models/triggers").Trigger;
+var bot = require("./chatbot");
 var config = require("../config");
 var request = require("request");
 
@@ -153,7 +154,7 @@ router.post("/notify",function(req,res){
 					}
 				}).then(function(camera){
 
-					//AQUI VA LA LÓGICA DE NOTIFICACIONES PUSH 
+					//AQUI VA LA LÓGICA DE NOTIFICACIONES PUSH USANDO EL OBJETO "camera."
 
 					cams = cams+camera.name+", ";
 				});
@@ -196,7 +197,7 @@ router.post("/notify",function(req,res){
 			}).then(function(user){
 
 				sendText("Activaste desde la plataforma la cámara "+camera.name,user.fbId);
-				//AQUÍ VA LA LÓGICA DE NOTIFICACIONES PUSH
+				//AQUÍ VA LA LÓGICA DE NOTIFICACIONES PUSH USANDO EL OBJETO "camera."
 
 			});
 			
@@ -204,6 +205,12 @@ router.post("/notify",function(req,res){
 		});
 
 	}
+
+});
+
+router.post("/exports",function(req,res){
+
+	bot.prueba("luisito se la rifo");	
 
 });
 
